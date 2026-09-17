@@ -1,0 +1,166 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #050807;
+  --bg-light: #f3fbf7;
+}
+
+html {
+  font-size: 15px;
+}
+
+html.dark body {
+  color: #eafff4;
+}
+
+html.light body {
+  color: #06251a;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1fc879 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1fc879, #2fb2f4);
+  border-radius: 999px;
+}
+
+::selection {
+  background: #1fc879;
+  color: #04140c;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.container, .row, .col, [class^="col-"] {
+  /* neutralise Bootstrap's max-width containers so Tailwind layout controls page width */
+  max-width: none;
+}
+
+.glass-card {
+  background: linear-gradient(160deg, rgba(31, 200, 121, 0.08), rgba(47, 178, 244, 0.06));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+html.light .glass-card {
+  background: linear-gradient(160deg, rgba(31, 200, 121, 0.08), rgba(47, 178, 244, 0.08));
+  border: 1px solid rgba(6, 37, 26, 0.08);
+}
+
+/* Light-mode text overrides — neutral/white text classes flip to dark
+   readable tones so copy stays legible on the light background. */
+html.light .text-white,
+html.light .text-slate-100 {
+  color: #06251a;
+}
+
+html.light .text-slate-200 {
+  color: #123626;
+}
+
+html.light .text-slate-300 {
+  color: #244a39;
+}
+
+html.light .text-slate-400 {
+  color: #3d6353;
+}
+
+html.light .text-slate-500 {
+  color: #55786a;
+}
+
+html.light .border-white\/10,
+html.light .border-white\/5 {
+  border-color: rgba(6, 37, 26, 0.12);
+}
+
+html.light .bg-white\/5 {
+  background-color: rgba(6, 37, 26, 0.05);
+}
+
+html.light .bg-black\/30,
+html.light .bg-black\/40,
+html.light .bg-black\/50,
+html.light .bg-black\/60,
+html.light .bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+html.light .text-emerald-300 {
+  color: #0c7f49;
+}
+
+html.light .text-sky-300 {
+  color: #1c8fd1;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #3ddc91, #5cc9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.btn-glow:hover::after {
+  transform: translateX(120%);
+}
+
+/* Fine grain over the WebGL background — stops the aurora gradients from
+   banding on wide dark areas. Inlined so it needs no network request. */
+.bg-noise {
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The skills globe is focusable so it can be turned with the arrow keys. */
+.skill-sphere:focus-visible {
+  outline: 2px solid rgba(61, 220, 145, 0.7);
+  outline-offset: 12px;
+  border-radius: 9999px;
+}
+
+html.light .skill-sphere button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(6, 37, 26, 0.12);
+  color: #06251a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
