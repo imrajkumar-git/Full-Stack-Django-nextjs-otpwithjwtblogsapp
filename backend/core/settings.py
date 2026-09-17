@@ -1,6 +1,7 @@
 """
 Django settings for the auth backend (JWT + Email OTP).
 """
+import os
 from pathlib import Path
 from datetime import timedelta
 from decouple import config, Csv
@@ -8,7 +9,7 @@ from decouple import config, Csv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY", default="dev-secret-key-change-me")
-DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     default="192.168.0.120, .onrender.com, .railway.app, localhost,",
@@ -161,7 +162,7 @@ SIMPLE_JWT = {
 # http://192.168.0.104:3000 (e.g. testing from another device on the network).
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    default=f"{FRONTEND_URL},http://192.168.0.120:3000,http://192.168.0.120:3000",
+    default=f"{FRONTEND_URL},https://full-stack-django-nextjs-otpwithjwt.vercel.app,http://192.168.0.120:3000",
     cast=Csv(),
 )
 CORS_ALLOW_CREDENTIALS = True
