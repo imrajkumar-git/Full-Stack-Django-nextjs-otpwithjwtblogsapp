@@ -11,7 +11,7 @@ SECRET_KEY = config("SECRET_KEY", default="dev-secret-key-change-me")
 DEBUG = config("DEBUG", default=True, cast=bool)
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    default="192.168.0.120",
+    default="192.168.0.120, .onrender.com, .railway.app, localhost,",
     cast=Csv(),
 )
 
